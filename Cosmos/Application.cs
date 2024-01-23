@@ -1,4 +1,5 @@
-﻿using Cosmos.Rendering;
+﻿using Cosmos.Core;
+using Cosmos.Rendering;
 using Platformer.Core;
 using SFML.Graphics;
 using SFML.System;
@@ -25,6 +26,7 @@ namespace Cosmos
 		public Renderer Renderer { get; private set; }
 
 		public bool IsRunning { get; private set; }
+		public int ExitCode { get; private set; }
 		#endregion
 
 		#region Fields
@@ -42,8 +44,15 @@ namespace Cosmos
 			Logger.LogInfo("Starting the game...");
 
 			// Create the game window
-			Logger.LogInfo("Creating game window...");
-			Window = new RenderWindow(new VideoMode(256 * 2, 256 * 2), "Cosmos", Styles.Titlebar | Styles.Close);
+			Logger.LogInfo("Creating window...");
+			try 
+			{ 
+				Window = new RenderWindow(new VideoMode(256 * 2, 256 * 2), "Cosmos", Styles.Titlebar | Styles.Close); 
+			}
+			catch (Exception ex) 
+			{ 
+				Logger.LogFatal(ex);
+			}
 			Window.SetTitle("Cosmos");
 			Window.SetVerticalSyncEnabled(true);
 
@@ -53,13 +62,17 @@ namespace Cosmos
 
 			// Subscribe to window events
 			Window.Closed += OnWindowClosed;
-			
-			// Set the game to run
-			IsRunning = true;
         }
 		#endregion
 
 		#region Methods
+		public void Start()
+		{
+			// Set the game to run
+			IsRunning = true;
+
+		}
+
 		public void PollInput()
 		{
 			// Dispatch window events
@@ -79,10 +92,17 @@ namespace Cosmos
 
 		public void Exit(int code = 0)
 		{
-			Logger.LogInfo($"Game exiting with code {code}");
+			// Set the exit code
+			if (IsRunning)
+				ExitCode = code;
 
 			// Set the game to exit at the end of the frame
 			IsRunning = false;
+		}
+
+		public void CleanUp()
+		{
+
 		}
 		#endregion
 

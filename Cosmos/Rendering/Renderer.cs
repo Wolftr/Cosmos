@@ -1,4 +1,5 @@
-﻿using Platformer.Core;
+﻿using Cosmos.Core;
+using Platformer.Core;
 using SFML.Graphics;
 using SFML.System;
 
@@ -27,8 +28,6 @@ namespace Cosmos.Rendering
 			// First pass - Tilemap layer
 			DrawTilemapPass();
 
-			
-
 			// Display the render texture
 			RenderTexture.Display();
 
@@ -37,9 +36,14 @@ namespace Cosmos.Rendering
 			Sprite textureSprite = new Sprite(RenderTexture.Texture, textureSpriteRect);
 			textureSprite.Scale = new Vector2f(Window.Size.X / 256, Window.Size.Y / 256);
 			Window.Draw(textureSprite);
-			
-			// Debug information pass
 
+			// Debug information pass
+			Font font = ResourceManager.GetFont("CascadiaCode");
+			Text text = new Text("FPS: ", font);
+			text.OutlineColor = Color.Black;
+			text.OutlineThickness = 2;
+			text.FillColor = Color.Green;
+			Window.Draw(text);
 
 			// Display the window
 			Window.Display();
@@ -54,7 +58,7 @@ namespace Cosmos.Rendering
 			{
 				for (int y = 0; y < 16; y++)
 				{
-					tile.FillColor = new Color(0, (byte)(x * 8), (byte)(y * 8));
+					tile.FillColor = new Color(0, (byte)(x * 100), (byte)(y * 8));
 					tile.Position = new Vector2f(x * 16, y * 16);
 					RenderTexture.Draw(tile);
 				}
