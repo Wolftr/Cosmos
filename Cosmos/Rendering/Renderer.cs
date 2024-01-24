@@ -34,7 +34,7 @@ namespace Cosmos.Rendering
 			// Draw game scene render texture to the window
 			IntRect textureSpriteRect = new IntRect(0, 0, 256, 256);
 			Sprite textureSprite = new Sprite(RenderTexture.Texture, textureSpriteRect);
-			textureSprite.Scale = new Vector2f(Window.Size.X / 256, Window.Size.Y / 256);
+			textureSprite.Scale = new Vector2f(Window.Size.X / 128, Window.Size.Y / 128);
 			Window.Draw(textureSprite);
 
 			// Debug information pass
@@ -46,15 +46,17 @@ namespace Cosmos.Rendering
 
 		public void DrawTilemap()
 		{
-			RectangleShape tile = new RectangleShape(new Vector2f(16, 16));
+			Sprite tile = new Sprite();
+			tile.Origin = new Vector2f(4, 4);
 			
 			// Draw each tile
 			for (int x = 0; x < 16; x++)
 			{
 				for (int y = 0; y < 16; y++)
 				{
-					tile.FillColor = new Color(0, (byte)(x * 8), (byte)(y * 8));
-					tile.Position = new Vector2f(x * 16, y * 16);
+					tile.Texture = ResourceManager.GetTexture("Tilemaps/tile");
+					tile.Position = new Vector2f((x * 8) + 4, (y * 8) + 4);
+					tile.Rotation = 90 * x;
 					RenderTexture.Draw(tile);
 				}
 			}

@@ -22,4 +22,12 @@
     </Content>
   </ItemGroup>
 
+   <ItemGroup>
+     <None Remove="Resources\image0.png" />
+   </ItemGroup>
+
+   <ItemGroup>
+     <Folder Include="Resources\Textures\Tilemaps\" />
+   </ItemGroup>
+
 </Project>

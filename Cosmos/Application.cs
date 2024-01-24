@@ -46,7 +46,7 @@ namespace Cosmos
 			Logger.LogInfo("Creating window...");
 			try 
 			{ 
-				Window = new RenderWindow(new VideoMode(256 * 2, 256 * 2), "Cosmos", Styles.Titlebar | Styles.Close); 
+				Window = new RenderWindow(new VideoMode(256 * 3, 256 * 3), "Cosmos", Styles.Titlebar | Styles.Close); 
 			}
 			catch (Exception ex) 
 			{ 
