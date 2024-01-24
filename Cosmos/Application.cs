@@ -1,8 +1,8 @@
 ﻿using Cosmos.Core;
 using Cosmos.Rendering;
 using SFML.Graphics;
-using SFML.System;
 using SFML.Window;
+using System;
 
 namespace Cosmos
 {
@@ -81,7 +81,7 @@ namespace Cosmos
 		public void Update()
 		{
             // Update time
-            Core.Time.Update();
+            Time.Update();
 		}
 
 		public void Render()

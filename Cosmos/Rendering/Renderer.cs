@@ -50,13 +50,12 @@ namespace Cosmos.Rendering
 			tile.Origin = new Vector2f(4, 4);
 			
 			// Draw each tile
-			for (int x = 0; x < 16; x++)
+			for (int y = 0; y < 16; y++)
 			{
-				for (int y = 0; y < 16; y++)
+				for (int x = 0; x < 16; x++)
 				{
 					tile.Texture = ResourceManager.GetTexture("Tilemaps/tile");
 					tile.Position = new Vector2f((x * 8) + 4, (y * 8) + 4);
-					tile.Rotation = 90 * x;
 					RenderTexture.Draw(tile);
 				}
 			}
