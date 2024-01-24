@@ -1,7 +1,7 @@
 ﻿using Cosmos.Core;
-using Platformer.Core;
 using SFML.Graphics;
 using SFML.System;
+using Time = Cosmos.Core.Time;
 
 namespace Cosmos.Rendering
 {
@@ -26,7 +26,7 @@ namespace Cosmos.Rendering
 			Window.Clear();
 
 			// First pass - Tilemap layer
-			DrawTilemapPass();
+			DrawTilemap();
 
 			// Display the render texture
 			RenderTexture.Display();
@@ -38,31 +38,38 @@ namespace Cosmos.Rendering
 			Window.Draw(textureSprite);
 
 			// Debug information pass
-			Font font = ResourceManager.GetFont("CascadiaCode");
-			Text text = new Text("FPS: ", font);
-			text.OutlineColor = Color.Black;
-			text.OutlineThickness = 2;
-			text.FillColor = Color.Green;
-			Window.Draw(text);
+			DrawDebugInfo();
 
 			// Display the window
 			Window.Display();
 		}
 
-		public void DrawTilemapPass()
+		public void DrawTilemap()
 		{
 			RectangleShape tile = new RectangleShape(new Vector2f(16, 16));
-
+			
 			// Draw each tile
 			for (int x = 0; x < 16; x++)
 			{
 				for (int y = 0; y < 16; y++)
 				{
-					tile.FillColor = new Color(0, (byte)(x * 100), (byte)(y * 8));
+					tile.FillColor = new Color(0, (byte)(x * 8), (byte)(y * 8));
 					tile.Position = new Vector2f(x * 16, y * 16);
 					RenderTexture.Draw(tile);
 				}
 			}
+		}
+
+		public void DrawDebugInfo()
+		{
+			// Draw FPS display
+			Font font = ResourceManager.GetFont("CascadiaCode");
+			Text text = new Text($"FPS: {(int)Time.FPS}", font);
+			text.Scale = new Vector2f(0.5f, 0.5f);
+			text.OutlineColor = Color.Black;
+			text.OutlineThickness = 2;
+			text.FillColor = Color.Green;
+			Window.Draw(text);
 		}
 	}
 }

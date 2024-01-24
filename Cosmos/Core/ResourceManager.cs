@@ -1,4 +1,4 @@
-﻿using Platformer.Core;
+﻿using Cosmos.Core;
 using SFML.Graphics;
 using System.Reflection;
 

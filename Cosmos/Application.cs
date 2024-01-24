@@ -1,6 +1,5 @@
 ﻿using Cosmos.Core;
 using Cosmos.Rendering;
-using Platformer.Core;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -81,7 +80,8 @@ namespace Cosmos
 
 		public void Update()
 		{
-
+            // Update time
+            Core.Time.Update();
 		}
 
 		public void Render()

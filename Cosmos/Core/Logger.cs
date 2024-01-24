@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Platformer.Core
+namespace Cosmos.Core
 {
 	internal static class Logger
 	{
