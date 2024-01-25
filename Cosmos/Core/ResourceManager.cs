@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Cosmos.Core
 {
-	internal static class ResourceManager
+    internal static class ResourceManager
 	{
 		#region Properties
 		private static Dictionary<string, Texture> TextureCache { get; set; }

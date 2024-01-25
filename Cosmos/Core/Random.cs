@@ -3,7 +3,7 @@
 	internal static class Random
 	{
 		#region Fields
-		private static readonly System.Random _random;
+		private static readonly System.Random _random = new System.Random();
 		#endregion
 
 		#region Methods
