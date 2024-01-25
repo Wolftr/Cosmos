@@ -1,5 +1,6 @@
 ﻿using Cosmos.Rendering;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using System;
 
@@ -45,14 +46,13 @@ namespace Cosmos.Core
             Logger.LogInfo("Creating window...");
             try
             {
-                Window = new RenderWindow(new VideoMode(256, 192), "Cosmos", Styles.Titlebar | Styles.Close);
+                Window = new RenderWindow(new VideoMode(1280, 720), "Cosmos", Styles.Close);
             }
             catch (Exception ex)
             {
                 Logger.LogFatal(ex);
             }
-            Window.SetTitle("Cosmos");
-            Window.SetVerticalSyncEnabled(true);
+            Window.SetVerticalSyncEnabled(false);
 
             // Create the renderer
             Logger.LogInfo("Creating the renderer...");
@@ -68,7 +68,6 @@ namespace Cosmos.Core
         {
             // Set the game to run
             IsRunning = true;
-
         }
 
         public void PollInput()
