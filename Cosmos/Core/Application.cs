@@ -1,4 +1,5 @@
-﻿using Cosmos.Rendering;
+﻿using Cosmos.Gameplay;
+using Cosmos.Rendering;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -21,11 +22,13 @@ namespace Cosmos.Core
             }
         }
 
+        public bool IsRunning { get; private set; }
+        public int ExitCode { get; private set; }
+
         public RenderWindow Window { get; private set; }
         public Renderer Renderer { get; private set; }
 
-        public bool IsRunning { get; private set; }
-        public int ExitCode { get; private set; }
+		public GameScene Scene { get; private set; }
         #endregion
 
         #region Fields
@@ -68,6 +71,8 @@ namespace Cosmos.Core
         {
             // Set the game to run
             IsRunning = true;
+
+			Scene = new GameScene();
         }
 
         public void PollInput()

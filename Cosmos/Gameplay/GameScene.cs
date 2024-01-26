@@ -8,8 +8,7 @@ namespace Cosmos.Gameplay
 
         public GameScene()
         {
-			Tilemap = new Tilemap(1, 1);
-			
+			Tilemap = new Tilemap(16, 200);
         }
     }
 }
