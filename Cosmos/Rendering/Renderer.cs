@@ -40,13 +40,15 @@ namespace Cosmos.Rendering
 		}
 
 		public void DrawGameScene()
-		{ 
+		{
 			// Set the window view for game rendering
+			GameView.Center = Scene.CameraFollowPoint;
 			Window.SetView(GameView);
 
 			DrawTilemap();
 
-			
+			// Draw the player
+			Window.Draw(Scene.Player.GetSprite());
 		}
 
 		public void DrawUI()
@@ -60,30 +62,6 @@ namespace Cosmos.Rendering
 
 		public void DrawTilemap()
 		{
-			float deltaX = Time.DeltaTime * 10;
-			float deltaY = Time.DeltaTime * 10;
-			if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.Right))
-				deltaX *= 1;
-			else if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.Left))
-				deltaX *= -1;
-			else
-				deltaX *= 0;
-
-			if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.Up))
-				deltaY *= 1;
-			else if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.Down))
-				deltaY *= -1;
-			else
-				deltaY *= 0;
-
-			if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.LShift))
-			{
-				deltaX *= 10;
-				deltaY *= 10;
-			}
-				
-			GameView.Move(new Vector2f(deltaX, deltaY));
-
 			// Create the tile sprite
 			Sprite tile = new Sprite();
 			tile.Origin = new Vector2f(4, 4);

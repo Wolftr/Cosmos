@@ -14,7 +14,10 @@ namespace Cosmos.Gameplay
 			{
 				for (int x = 0; x < width; x++)
 				{
-					Tiles[x, y] = Random.Range(0, 2);
+					if (x == 0 || y == 0 || x == width - 1 || y == height - 1)
+						Tiles[x, y] = 1;
+					else
+						Tiles[x, y] = 0;
 				}
 			}
 		}

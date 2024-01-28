@@ -73,6 +73,16 @@ namespace Cosmos.Core
 				Buttons[i].Reset();
 			}
 		}
+
+		public static int GetAxis(Keyboard.Key positiveKey, Keyboard.Key negativeKey)
+		{
+			if (GetKeyHeld(positiveKey) && !GetKeyHeld(negativeKey))
+				return 1;
+			else if (GetKeyHeld(negativeKey) && !GetKeyHeld(positiveKey))
+				return -1;
+			else
+				return 0;
+		}
 		#endregion
 
 		#region Event Handlers

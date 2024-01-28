@@ -89,6 +89,8 @@ namespace Cosmos.Core
             // Update time
             Time.Update();
 
+			Scene.Update();
+
 			// Reset button states at the end of the frame
 			Input.ResetButtonStates();
         }
