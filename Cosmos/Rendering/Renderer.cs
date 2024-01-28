@@ -21,7 +21,7 @@ namespace Cosmos.Rendering
 			Window = window;
 
 			// Initialize game view
-			GameView = new View(new Vector2f(64, 0), new Vector2f(256, 144));
+			GameView = new View(new Vector2f(64, 0), new Vector2f(256, -144));
 		}
 
 		public void Render()
@@ -60,7 +60,29 @@ namespace Cosmos.Rendering
 
 		public void DrawTilemap()
 		{
-			GameView.Move(new Vector2f(0, Time.DeltaTime * 10));
+			float deltaX = Time.DeltaTime * 10;
+			float deltaY = Time.DeltaTime * 10;
+			if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.Right))
+				deltaX *= 1;
+			else if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.Left))
+				deltaX *= -1;
+			else
+				deltaX *= 0;
+
+			if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.Up))
+				deltaY *= 1;
+			else if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.Down))
+				deltaY *= -1;
+			else
+				deltaY *= 0;
+
+			if (Input.GetKeyHeld(SFML.Window.Keyboard.Key.LShift))
+			{
+				deltaX *= 10;
+				deltaY *= 10;
+			}
+				
+			GameView.Move(new Vector2f(deltaX, deltaY));
 
 			// Create the tile sprite
 			Sprite tile = new Sprite();

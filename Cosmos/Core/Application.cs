@@ -1,7 +1,6 @@
 ﻿using Cosmos.Gameplay;
 using Cosmos.Rendering;
 using SFML.Graphics;
-using SFML.System;
 using SFML.Window;
 using System;
 
@@ -43,7 +42,7 @@ namespace Cosmos.Core
             if (Instance != this)
                 return;
 
-            Logger.LogInfo("Starting the game...");
+            Logger.LogInfo("Initializing the application...");
 
             // Create the game window
             Logger.LogInfo("Creating window...");
@@ -55,7 +54,8 @@ namespace Cosmos.Core
             {
                 Logger.LogFatal(ex);
             }
-            Window.SetVerticalSyncEnabled(false);
+            Window.SetVerticalSyncEnabled(true);
+			Window.SetKeyRepeatEnabled(false);
 
             // Create the renderer
             Logger.LogInfo("Creating the renderer...");
@@ -63,14 +63,17 @@ namespace Cosmos.Core
 
             // Subscribe to window events
             Window.Closed += OnWindowClosed;
+			Window.KeyPressed += Input.OnKeyPressed;
+			Window.KeyReleased += Input.OnKeyReleased;
         }
-        #endregion
+		#endregion
 
-        #region Methods
-        public void Start()
+		#region Methods
+		public void Start()
         {
-            // Set the game to run
-            IsRunning = true;
+			// Set the game to run
+			Logger.LogInfo("Starting the application...");
+			IsRunning = true;
 
 			Scene = new GameScene();
         }
@@ -85,6 +88,9 @@ namespace Cosmos.Core
         {
             // Update time
             Time.Update();
+
+			// Reset button states at the end of the frame
+			Input.ResetButtonStates();
         }
 
         public void Render()
@@ -114,6 +120,6 @@ namespace Cosmos.Core
         {
             Exit(0);
         }
-        #endregion
-    }
+		#endregion
+	}
 }
