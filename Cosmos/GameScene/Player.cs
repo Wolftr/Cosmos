@@ -3,7 +3,7 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
-namespace Cosmos.Gameplay
+namespace Cosmos.GameScene
 {
 	internal class Player
 	{

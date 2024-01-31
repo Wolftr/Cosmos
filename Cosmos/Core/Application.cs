@@ -1,5 +1,4 @@
-﻿using Cosmos.Gameplay;
-using Cosmos.Rendering;
+﻿using Cosmos.GameScene;
 using SFML.Graphics;
 using SFML.Window;
 using System;
@@ -27,7 +26,7 @@ namespace Cosmos.Core
         public RenderWindow Window { get; private set; }
         public Renderer Renderer { get; private set; }
 
-		public GameScene Scene { get; private set; }
+		public Scene ActiveScene { get; private set; }
         #endregion
 
         #region Fields
@@ -75,7 +74,8 @@ namespace Cosmos.Core
 			Logger.LogInfo("Starting the application...");
 			IsRunning = true;
 
-			Scene = new GameScene();
+			ActiveScene = new Scene();
+			ActiveScene.AddSceneObject(new Tilemap(16, 16));
         }
 
         public void PollInput()
@@ -89,7 +89,7 @@ namespace Cosmos.Core
             // Update time
             Time.Update();
 
-			Scene.Update();
+			ActiveScene.Update();
 
 			// Reset button states at the end of the frame
 			Input.ResetButtonStates();

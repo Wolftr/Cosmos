@@ -1,6 +1,6 @@
 ﻿using SFML.System;
 
-namespace Cosmos.Gameplay
+namespace Cosmos.GameScene
 {
 	internal class Transform
 	{
