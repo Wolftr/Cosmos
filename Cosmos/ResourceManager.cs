@@ -33,19 +33,9 @@ namespace Cosmos
             if (!TextureCache.ContainsKey(name))
             {
                 // Load the font if it has not been loaded
-                Texture texture;
-                try
-                {
-                    // Try to load the font from file
-                    texture = new Texture(TexturesPath + name + ".png");
-                    TextureCache.Add(name, texture);
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFatal(ex);
-                    Application.Instance.Exit(1);
-                }
-            }
+                Texture texture = new Texture(TexturesPath + name + ".png");
+				TextureCache.Add(name, texture);
+			}
 
             // Return the font
             return TextureCache.GetValueOrDefault(name);
@@ -57,19 +47,9 @@ namespace Cosmos
             if (!FontCache.ContainsKey(name))
             {
                 // Load the font if it has not been loaded
-                Font font;
-                try
-                {
-                    // Try to load the font from file
-                    font = new Font(FontsPath + name + ".ttf");
-                    FontCache.Add(name, font);
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogFatal(ex);
-                    Application.Instance.Exit(1);
-                }
-            }
+                Font font = new Font(FontsPath + name + ".ttf");
+				FontCache.Add(name, font);
+			}
 
             // Return the font
             return FontCache.GetValueOrDefault(name);

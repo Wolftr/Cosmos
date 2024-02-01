@@ -1,22 +1,45 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 
 namespace Cosmos
 {
     internal static class Logger
     {
         #region Properties
-        private static ConsoleColor LogInfoColor => ConsoleColor.White;
+		private static string LogPath => Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\log.txt";
+		private static FileStream LogStream { get; set; }
+		private static StreamWriter LogWriter { get; set; }
+
+		private static ConsoleColor LogInfoColor => ConsoleColor.White;
         private static ConsoleColor LogWarningColor => ConsoleColor.Yellow;
         private static ConsoleColor LogErrorColor => ConsoleColor.Red;
         private static ConsoleColor LogFatalColor => ConsoleColor.DarkRed;
-        #endregion
+		#endregion
 
-        #region Methods
-        /// <summary>
-        /// Logs an info message to the console
-        /// </summary>
-        /// <param name="message"></param>
-        public static void LogInfo(object message)
+		#region Methods
+		/// <summary>
+		/// Opens the log stream for writing
+		/// </summary>
+		public static void InitializeLogStream()
+		{
+			LogStream = new FileStream(LogPath, FileMode.Create, FileAccess.Write);
+			LogWriter = new StreamWriter(LogStream);
+		}
+
+		/// <summary>
+		/// Closes the log stream and saves it to file
+		/// </summary>
+		public static void CloseLogStream()
+		{
+			LogWriter.Close();
+		}
+
+		/// <summary>
+		/// Logs an info message to the console
+		/// </summary>
+		/// <param name="message"></param>
+		public static void LogInfo(object message)
         {
             Log("Info", LogInfoColor, message);
         }
@@ -56,9 +79,19 @@ namespace Cosmos
         /// <param name="message"></param>
         private static void Log(string logTitle, ConsoleColor color, object message)
         {
-            Console.ForegroundColor = color;
-            Console.WriteLine($"[{logTitle} ({DateTime.Now:HH:mm:ss})] {message}");
+			string formattedMessage = $"[{logTitle} ({DateTime.Now:HH:mm:ss})] {message}";
+
+			// Write the message to console
+			Console.ForegroundColor = color;
+            Console.WriteLine(formattedMessage);
+
+			// Create the log stream if it is null
+			if (LogStream == null)
+				return;
+
+			// Write the message to the log file
+			LogWriter.WriteLine(formattedMessage);
         }
-        #endregion
-    }
+		#endregion
+	}
 }

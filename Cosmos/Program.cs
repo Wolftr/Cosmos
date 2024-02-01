@@ -1,32 +1,51 @@
-﻿namespace Cosmos
+﻿using System;
+
+namespace Cosmos
 {
     internal class Program
 	{
 		static int Main()
 		{
-			// Create the game
-			Application game = new Application();
-			
-			// Start the game
-			game.Start();
-
-			// Game loop
-			while (game.IsRunning)
+			try
 			{
-				// Input
-				game.PollInput();
+				// Initialize the logger
+				Logger.InitializeLogStream();
+				Logger.LogInfo("Logger initialized!");
 
-				// Update
-				game.Update();
+				// Create the game
+				Application game = new Application();
 
-				// Render
-				game.Render();
+				// Start the game
+				game.Start();
+
+				// Game loop
+				while (game.IsRunning)
+				{
+					// Input
+					game.PollInput();
+
+					// Update
+					game.Update();
+
+					// Render
+					game.Render();
+				}
+
+				// Clean up on exit
+				game.CleanUp();
+			}
+			catch (Exception e)
+			{
+				// Log the exception as a fatal error and close the log stream
+				Logger.LogFatal(e);
+				Logger.CloseLogStream();
+				throw;
 			}
 
-			// Clean up on exit
-			game.CleanUp();
+			// Close the log stream
+			Logger.CloseLogStream();
 
-			return game.ExitCode;
+			return 0;
 		}
 	}
 }

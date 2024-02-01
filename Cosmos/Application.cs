@@ -23,7 +23,6 @@ namespace Cosmos
         }
 
         public bool IsRunning { get; private set; }
-        public int ExitCode { get; private set; }
 
         public RenderWindow Window { get; private set; }
         public Renderer Renderer { get; private set; }
@@ -103,12 +102,8 @@ namespace Cosmos
             Renderer.Render();
         }
 
-        public void Exit(int code = 0)
+        public void Exit()
         {
-            // Set the exit code
-            if (IsRunning)
-                ExitCode = code;
-
             // Set the game to exit at the end of the frame
             IsRunning = false;
         }
@@ -122,7 +117,7 @@ namespace Cosmos
         #region Event Handlers
         private void OnWindowClosed(object sender, EventArgs e)
         {
-            Exit(0);
+            Exit();
         }
         #endregion
     }
