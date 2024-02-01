@@ -1,6 +1,4 @@
-﻿using Cosmos.Core;
-
-namespace Cosmos
+﻿namespace Cosmos
 {
     internal class Program
 	{

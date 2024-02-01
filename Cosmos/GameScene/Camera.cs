@@ -1,10 +1,10 @@
-﻿using Cosmos.Core;
+﻿using Cosmos.Rendering;
 using SFML.Graphics;
 using SFML.System;
 
 namespace Cosmos.GameScene
 {
-	internal class Camera
+    internal class Camera
 	{
 		#region Properties
 		public Vector2f Position { get; set; }

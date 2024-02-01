@@ -2,31 +2,31 @@
 using SFML.Graphics;
 using SFML.System;
 
-namespace Cosmos.Core
+namespace Cosmos.Rendering
 {
     internal class Renderer
     {
-		#region Constants
-		public const uint DEFAULT_GAME_VIEW_WIDTH = 256;
-		public const uint DEFAULT_GAME_VIEW_HEIGHT = 144;
-		#endregion
+        #region Constants
+        public const uint DEFAULT_GAME_VIEW_WIDTH = 256;
+        public const uint DEFAULT_GAME_VIEW_HEIGHT = 144;
+        #endregion
 
-		#region Properties
-		public RenderWindow Window { get; private set; }
+        #region Properties
+        public RenderWindow Window { get; private set; }
 
         private static View UIView => new View(new FloatRect(0, 0, 1920, 1080));
-		#endregion
+        #endregion
 
-		#region Constructors
-		public Renderer(RenderWindow window)
+        #region Constructors
+        public Renderer(RenderWindow window)
         {
             // Set the reference to the window
             Window = window;
         }
-		#endregion
+        #endregion
 
-		#region Methods
-		public void Render()
+        #region Methods
+        public void Render()
         {
             // Clear the window
             Window.Clear();
@@ -45,12 +45,12 @@ namespace Cosmos.Core
         {
             // Set the window view for game rendering
             Window.SetView(Scene.ActiveScene.Camera.View);
-			
-			// Draw each game object to the window
-			foreach(GameObject obj in Scene.ActiveScene.GameObjects)
-			{
-				obj.Draw(Window);
-			}
+
+            // Draw each game object to the window
+            foreach (GameObject obj in Scene.ActiveScene.GameObjects)
+            {
+                obj.Draw(Window);
+            }
         }
 
         public void DrawUI()
@@ -73,6 +73,6 @@ namespace Cosmos.Core
             text.FillColor = Color.Green;
             Window.Draw(text);
         }
-		#endregion
-	}
+        #endregion
+    }
 }

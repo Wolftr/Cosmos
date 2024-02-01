@@ -1,5 +1,4 @@
-﻿using Cosmos.Core;
-using SFML.System;
+﻿using SFML.System;
 using System.Collections.Generic;
 
 namespace Cosmos.GameScene

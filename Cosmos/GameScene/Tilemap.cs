@@ -1,11 +1,10 @@
-﻿using Cosmos.Core;
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
 namespace Cosmos.GameScene
 {
-	internal class Tilemap : GameObject
+    internal class Tilemap : GameObject
 	{
 		public int[,] Tiles { get; private set; } 
 

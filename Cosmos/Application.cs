@@ -1,9 +1,11 @@
 ﻿using Cosmos.GameScene;
+using Cosmos.InputManagement;
+using Cosmos.Rendering;
 using SFML.Graphics;
 using SFML.Window;
 using System;
 
-namespace Cosmos.Core
+namespace Cosmos
 {
     internal class Application
     {
@@ -26,7 +28,7 @@ namespace Cosmos.Core
         public RenderWindow Window { get; private set; }
         public Renderer Renderer { get; private set; }
 
-		public Scene ActiveScene { get; private set; }
+        public Scene ActiveScene { get; private set; }
         #endregion
 
         #region Fields
@@ -54,7 +56,7 @@ namespace Cosmos.Core
                 Logger.LogFatal(ex);
             }
             Window.SetVerticalSyncEnabled(true);
-			Window.SetKeyRepeatEnabled(false);
+            Window.SetKeyRepeatEnabled(false);
 
             // Create the renderer
             Logger.LogInfo("Creating the renderer...");
@@ -62,20 +64,20 @@ namespace Cosmos.Core
 
             // Subscribe to window events
             Window.Closed += OnWindowClosed;
-			Window.KeyPressed += Input.OnKeyPressed;
-			Window.KeyReleased += Input.OnKeyReleased;
+            Window.KeyPressed += Input.OnKeyPressed;
+            Window.KeyReleased += Input.OnKeyReleased;
         }
-		#endregion
+        #endregion
 
-		#region Methods
-		public void Start()
+        #region Methods
+        public void Start()
         {
-			// Set the game to run
-			Logger.LogInfo("Starting the application...");
-			IsRunning = true;
+            // Set the game to run
+            Logger.LogInfo("Starting the application...");
+            IsRunning = true;
 
-			ActiveScene = new Scene();
-			ActiveScene.AddSceneObject(new Tilemap(16, 16));
+            ActiveScene = new Scene();
+            ActiveScene.AddSceneObject(new Tilemap(16, 16));
         }
 
         public void PollInput()
@@ -89,10 +91,10 @@ namespace Cosmos.Core
             // Update time
             Time.Update();
 
-			ActiveScene.Update();
+            ActiveScene.Update();
 
-			// Reset button states at the end of the frame
-			Input.ResetButtonStates();
+            // Reset button states at the end of the frame
+            Input.ResetButtonStates();
         }
 
         public void Render()
@@ -122,6 +124,6 @@ namespace Cosmos.Core
         {
             Exit(0);
         }
-		#endregion
-	}
+        #endregion
+    }
 }

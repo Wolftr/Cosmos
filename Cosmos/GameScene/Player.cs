@@ -1,11 +1,11 @@
-﻿using Cosmos.Core;
+﻿using Cosmos.InputManagement;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
 namespace Cosmos.GameScene
 {
-	internal class Player
+    internal class Player
 	{
 		#region Constants
 		const float MOVEMENT_SPEED = 30f;
@@ -31,7 +31,7 @@ namespace Cosmos.GameScene
 			movementInputDirection.Y = Input.GetAxis(Keyboard.Key.Up, Keyboard.Key.Down);
 
 			// Apply movement
-			Transform.Position += movementInputDirection * Core.Time.DeltaTime * MOVEMENT_SPEED;
+			Transform.Position += movementInputDirection * Time.DeltaTime * MOVEMENT_SPEED;
 		}
 
 		public Sprite GetSprite()
