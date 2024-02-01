@@ -1,2 +1,2 @@
 # Cosmos
- A top down game powered by a custom engine
+ A top down game powered by SFML and a custom engine
