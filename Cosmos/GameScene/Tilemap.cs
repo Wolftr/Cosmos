@@ -1,8 +1,4 @@
-﻿using SFML.Graphics;
-using SFML.System;
-using SFML.Window;
-
-namespace Cosmos.GameScene
+﻿namespace Cosmos.GameScene
 {
     internal class Tilemap : GameObject
 	{
@@ -27,12 +23,7 @@ namespace Cosmos.GameScene
 				for (int x = 0; x < Tiles.GetLength(0); x++)
 				{
 					// Set the tile position
-					tile.Position = new Vector2f((x * 8) + 4, (y * 8) + 4);
-
-					// Check if the tile is inside the camera's view
-					FloatRect tileBounds = new FloatRect(tile.Position.X - 4, tile.Position.Y - 4, 8, 8);
-					if (Scene.Camera.Viewport.Intersects(tileBounds))
-						continue;
+					tile.Position = Transform.Position + new Vector2f((x * 8) + 4, (y * 8) + 4);
 
 					// Set the tile texture
 					tile.Texture = ResourceManager.GetTexture("Tilemaps/tile");

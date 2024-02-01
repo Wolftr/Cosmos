@@ -12,7 +12,6 @@ namespace Cosmos.GameScene
 		public float Scale { get; set; }
 
 		public View View => new View(Position, new Vector2f(Renderer.DEFAULT_GAME_VIEW_WIDTH * Scale, -Renderer.DEFAULT_GAME_VIEW_HEIGHT * Scale));
-		public FloatRect Viewport => new FloatRect(View.Center - (View.Size / 2), View.Size);
 		#endregion
 
 		#region Constructors

@@ -1,7 +1,4 @@
-﻿using SFML.System;
-using System.Collections.Generic;
-
-namespace Cosmos.GameScene
+﻿namespace Cosmos.GameScene
 {
     internal class Scene
     {

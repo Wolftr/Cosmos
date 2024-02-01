@@ -1,6 +1,6 @@
 ﻿namespace Cosmos.Math
 {
-    internal static class Random
+    internal static class RNG
     {
         #region Fields
         private static readonly System.Random _random = new System.Random();

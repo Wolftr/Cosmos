@@ -1,9 +1,7 @@
 ﻿using Cosmos.GameScene;
 using Cosmos.InputManagement;
+using Cosmos.Math;
 using Cosmos.Rendering;
-using SFML.Graphics;
-using SFML.Window;
-using System;
 
 namespace Cosmos
 {
@@ -46,15 +44,8 @@ namespace Cosmos
 
             // Create the game window
             Logger.LogInfo("Creating window...");
-            try
-            {
-                Window = new RenderWindow(new VideoMode(1280, 720), "Cosmos", Styles.Close);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogFatal(ex);
-            }
-            Window.SetVerticalSyncEnabled(true);
+			Window = new RenderWindow(new VideoMode(1280, 720), "Cosmos", Styles.Close);
+			Window.SetVerticalSyncEnabled(true);
             Window.SetKeyRepeatEnabled(false);
 
             // Create the renderer
@@ -76,7 +67,27 @@ namespace Cosmos
             IsRunning = true;
 
             ActiveScene = new Scene();
-            ActiveScene.AddSceneObject(new Tilemap(16, 16));
+			Player player = new Player();
+			player.Transform.Position = new Vector2f(60, 60);
+			Tilemap tilemap = new Tilemap(16, 16);
+
+			for (int y = 0; y < 16; y++)
+			{
+				for (int x = 0; x < 16; x++)
+				{
+					if (x == 0 || y == 0 || x == 15 || y == 15)
+						tilemap.Tiles[x, y] = 1;
+					else
+						tilemap.Tiles[x, y] = 0;
+				}
+			}
+
+			ActiveScene.AddSceneObject(player);
+			ActiveScene.AddSceneObject(tilemap);
+			foreach (GameObject obj in ActiveScene.GameObjects)
+			{
+				Logger.LogInfo(obj.Name);
+			}
         }
 
         public void PollInput()
