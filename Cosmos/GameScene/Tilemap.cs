@@ -25,6 +25,11 @@
 					// Set the tile position
 					tile.Position = Transform.Position + new Vector2f((x * 8) + 4, (y * 8) + 4);
 
+					// Check if the tile is inside the camera's view
+					FloatRect tileBounds = new FloatRect(tile.Position.X - 4, tile.Position.Y - 4, 8, 8);
+					if (!Scene.Camera.Viewport.Intersects(tileBounds))
+						continue;
+
 					// Set the tile texture
 					tile.Texture = ResourceManager.GetTexture("Tilemaps/tile");
 
