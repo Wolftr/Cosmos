@@ -66,7 +66,7 @@ namespace Cosmos.Rendering
         {
             // Draw FPS display
             Font font = ResourceManager.GetFont("CascadiaCode");
-            Text text = new Text($"FPS: {(int)Time.FPS}", font);
+			Text text = new Text($"FPS: {(int)Time.FPS}", font);
             text.Scale = new Vector2f(0.75f, 0.75f);
             text.OutlineColor = Color.Black;
             text.OutlineThickness = 2;

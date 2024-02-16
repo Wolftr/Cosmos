@@ -1,6 +1,6 @@
 ﻿using Cosmos.GameScene;
 using Cosmos.InputManagement;
-using Cosmos.Math;
+using Cosmos.Mathematics;
 using Cosmos.Rendering;
 
 namespace Cosmos

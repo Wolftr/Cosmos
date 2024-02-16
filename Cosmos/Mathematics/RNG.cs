@@ -1,4 +1,4 @@
-﻿namespace Cosmos.Math
+﻿namespace Cosmos.Mathematics
 {
     internal static class RNG
     {
